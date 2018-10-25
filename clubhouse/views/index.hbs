@@ -1,5 +1,49 @@
-<h1>Welcome to {{ title }}</h1>
+{{!-- <h1>Welcome to {{ title }}</h1> --}}
 
 
 
 
+<div class="container">
+    <div class="navbar">
+        <div id="logo">
+            ClubFinder
+        </div>
+        <div id="crest"></div>
+        <div id="login">
+            <a href="/admin">Member Sign in</a>
+        </div>
+    </div>
+
+    <div id="background">
+        {{!-- <video loop muted autoplay poster="img/videoframe.jpg" class="fullscreen-bg__video">
+            <source src="../public/images/Golfing/Golfing.webm" type="video/webm">
+        </video> --}}
+        {{!-- <img src="../public/images/Golfing/Golfing.jpg" alt="golf"> --}}
+    </div>
+
+    <div id="popup">
+        <div id="title">Find a new community today</div>
+        <div id="searchBar">Looking to join a club? Enter a city or zip code below to begin searching:</div>
+        <form action="/search" method="get">
+            <input type="text" id="location" name="location">
+            <button type="submit" id="button">Search for a club</button>
+        </form>
+        <form action="/register" method="get">
+        <div id="register">Or register a new community today:</div>
+        <button type="submit"  id="registerButton">Register</button>
+        </form>
+    </div>
+
+    <div class="footer">
+        <a href="/">About ClubMatch.com</a>
+        <br>
+        <a href="/">Privacy Policy</a>
+        <br>
+        <a href="/">Terms of Use</a>
+
+
+    </div>
+
+
+
+</div>
