@@ -21,16 +21,25 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'ClubFinder' });
 });
 
-router.get('/search', function(req, res, next) {
+router.get('/search/:location?', function(req, res, next) {
   clubHouse.find().then(function(doc){
-    res.render('search', {items: doc});
-    console.log(doc);
+    var location = req.params.location;
+    console.log(location);
+    res.render('search', {layout: 'searchLayout.hbs'});
+    // console.log(doc);
     // res.json(doc);
   });
 });
 
+// Api route to return full database entry for search
+router.get('/api', function(req, res, next) {
+  clubHouse.find().then(function(doc){
+    res.json(doc);
+  });
+});
+
 router.get('/register', function(req, res, next) {
-  res.render('register');
+  res.render('register', {layout: 'mainpage.hbs'});
 });
 
 router.get('/myhomepage', function(req, res, next){
@@ -55,7 +64,7 @@ router.post('/create', function(req, res, next) {
 });
 
 router.get('/admin', function(req, res, next) {
-  res.render('admin');
+  res.render('admin', {layout: 'adminLayout.hbs'});
 });
 
 module.exports = router;
