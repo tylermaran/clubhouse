@@ -21,9 +21,9 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'ClubFinder' });
 });
 
-router.get('/search/:location?', function(req, res, next) {
+router.get('/search/:id?', function(req, res, next) {
   clubHouse.find().then(function(doc){
-    var location = req.params.location;
+    var location = req.params.id;
     console.log(location);
     res.render('search', {layout: 'searchLayout.hbs'});
     // console.log(doc);
@@ -34,6 +34,15 @@ router.get('/search/:location?', function(req, res, next) {
 // Api route to return full database entry for search
 router.get('/api', function(req, res, next) {
   clubHouse.find().then(function(doc){
+    res.json(doc);
+  });
+});
+
+// Api route to return full database entry for search
+router.get('/api/:id', function(req, res, next) {
+  let club = req.params.id;
+  console.log(club);
+  clubHouse.findOne({clubName: club}).then(function(doc){
     res.json(doc);
   });
 });

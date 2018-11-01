@@ -1,0 +1,135 @@
+/* input[type=text] {
+    width: 130px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+} */
+
+body {
+    min-width: 700px;
+    margin: 0 0 0 0;
+    background-color: rgba(66, 63, 66, 0.77);
+  }
+
+.navbar {
+    position: relative;
+    min-width: 700px;
+    margin: 0 0 20px 0;
+    padding: 20px 0px 0px 0px;
+    height: 75px;
+    background: white;
+    width: 100%;
+    -webkit-box-shadow: 0px 13px 27px -6px rgba(66, 63, 66, 0.77);
+    -moz-box-shadow: 0px 13px 27px -6px rgba(66, 63, 66, 0.77);
+    box-shadow: 0px 13px 27px -6px rgba(66, 63, 66, 0.77);
+}
+
+#logo {
+    position: absolute;
+    height: auto;
+    width: auto;
+    color: rgb(4, 4, 156);
+    left: 10%;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 40px;
+    margin-top: 10px;
+}
+
+#crest {
+    position: absolute;
+    height: 65px;
+    width: 65px;
+    left: 48%;
+    background-image: url('../images/golf.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+#login {
+    position: absolute;
+    height: auto;
+    width: auto;
+    left: 80%;
+    margin-top: 30px;
+    font-size: 18px;
+}
+
+
+/* When the input field gets focus, change its width to 100% */
+input[type=text]:focus {
+    width: 100%;
+}
+
+.container {
+    width: 90%;
+    margin-left: 5%;
+    margin-top: 10%;
+    background-color: rgb(255, 255, 255);
+}
+
+#title {
+    position: relative;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: white;
+    font-size: 20px;
+    background-color: rgb(75, 75, 75);
+    width: 95%;
+    height: 50px;
+    padding: 10px 0px 0px 5%;
+  }
+
+.listing {
+    margin: 10px 50px 10px 50px;
+    border: 1px solid grey;
+    padding: 2px 2px 2px 2px;
+    background-color: white;
+
+    border-radius: 5px;
+
+    -webkit-box-shadow: 9px 13px 17px -4px rgba(100, 100, 100, 0.74);
+    -moz-box-shadow: 9px 13px 17px -4px rgba(100, 100, 100, 0.74);
+    box-shadow: 9px 13px 17px -4px rgba(100, 100, 100, 0.74);
+}
+
+.backgroundImage {
+    min-width: 700px;
+    position: absolute;
+    z-index: -100;
+    top: 60px;
+    width: 99vw;
+    height: 60vh;
+    background-image: url('../images/widescreenCourse.jpg');
+    float: left;
+    background-repeat: no-repeat;
+    background-size: contain;
+    overflow: hidden;
+    opacity: .70;
+}
+
+#greyScreen {
+    position: fixed;
+    display: none;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 50;
+    background-color: #646464;
+    opacity: .5;
+}
+
+
+#modal {
+    display: none;
+    position: absolute;
+    margin: 10vh 10vw;
+    width: 80vw;
+    height: 75vh;
+    background-color: white;
+    border: 1px solid black;
+    z-index: 100;
+}
+
+#modalHeader {
+    width: 100%;
+    background-color: grey;
+}

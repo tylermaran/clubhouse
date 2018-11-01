@@ -97,7 +97,7 @@ body {
   width: 80%;
   text-align: center;
   padding: 0 0 0 10%;
-  font-size: 18px;
+  font-size: 16px;
 }
 
 #location {
@@ -116,8 +116,9 @@ body {
   background-color: rgb(59, 121, 255);
   border: none;
   color: white;
-  left: 28%;
-  padding: 15px 32px;
+  width: 60%;
+  margin-left: 20%;
+  padding: 15px 0px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
@@ -131,7 +132,7 @@ body {
   width: 80%;
   text-align: center;
   padding: 0 0 0 10%;
-  font-size: 18px;
+  font-size: 16px;
 }
 
 #registerButton {
@@ -140,8 +141,9 @@ body {
   background-color: rgb(59, 121, 255);
   border: none;
   color: white;
-  left: 35%;
-  padding: 15px 32px;
+  width: 60%;
+  margin-left: 20%;
+  padding: 15px 0px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
