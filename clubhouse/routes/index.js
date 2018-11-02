@@ -14,7 +14,20 @@ var newClubSchema = new Schema({
   contact: String
 });
 
+var clubDetailSchema = new Schema({
+  // here we can require a type and whether it is required
+  clubName: {type: String, required: true},
+  website: String,
+  description: String,
+  contact: String,
+  reviews: String,
+  images: String
+});
+
+
 var clubHouse = mongoose.model('ClubHouse', newClubSchema);
+var clubDetail = mongoose.model('clubDetail', clubDetailSchema);
+
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -26,8 +39,7 @@ router.get('/search/:id?', function(req, res, next) {
     var location = req.params.id;
     console.log(location);
     res.render('search', {layout: 'searchLayout.hbs'});
-    // console.log(doc);
-    // res.json(doc);
+
   });
 });
 
@@ -42,13 +54,15 @@ router.get('/api', function(req, res, next) {
 router.get('/api/:id', function(req, res, next) {
   let club = req.params.id;
   console.log(club);
-  clubHouse.findOne({clubName: club}).then(function(doc){
+  clubDetail.findOne({clubName: club}).then(function(doc){
     res.json(doc);
   });
 });
 
+
+// Takes 
 router.get('/register', function(req, res, next) {
-  res.render('register', {layout: 'mainpage.hbs'});
+  res.render('register', {layout: 'registerLayout.hbs'});
 });
 
 router.get('/myhomepage', function(req, res, next){
@@ -57,17 +71,32 @@ router.get('/myhomepage', function(req, res, next){
 
 
 router.post('/create', function(req, res, next) {
-  var item = {
+  
+  var brief = (req.body.description).substring(0,150) + '...';
+  
+  
+  var overview = {
     clubName: req.body.clubName,
     website: req.body.website,
-    description: req.body.description,
+    description: brief,
     contact: req.body.contact
   };
 
-  console.log(item);
+  var detail = {
+    clubName: req.body.clubName,
+    website: req.body.website,
+    description: req.body.description,
+    contact: req.body.contact,
+    reviews: req.body.reviews,
+    images: req.body.images
+  }
+ 
+  var overviewDB = new clubHouse(overview);
+  overviewDB.save();
 
-  var data = new clubHouse(item);
-  data.save();
+  var detailDB = new clubDetail(detail)
+  detailDB.save();
+
   res.redirect('/myhomepage');
 
 });

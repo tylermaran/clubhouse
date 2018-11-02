@@ -130,6 +130,59 @@ input[type=text]:focus {
 }
 
 #modalHeader {
-    width: 100%;
-    background-color: grey;
+    width: auto;
+    background-color: rgb(0, 83, 179);
+    font-size: 20px;
+    padding: 5px 5px 5px 10px;
+    color: white;
+}
+
+#modalExit {
+    position: absolute;
+    top: 0%;
+    right: 0%;
+    font-size: 20px;
+    padding: 5px 10px 5px 5px;
+    color: white;
+}
+
+#modalExit:hover {
+    background: #1ec7bb;
+}
+
+#modalTitle {
+    font-size: 20px;
+    margin: 5px 0px 10px 20px;
+    font-weight: bold; 
+}
+
+#modalDescription {
+    margin: 5px 0px 10px 20px;
+}
+
+#modal_image {
+    position: relative;
+    width: 30%;
+    display: inline;
+    float: right;
+    margin: 5%;
+}
+
+#reviewHeader {
+    position: absolute;
+    width: 95%;
+    margin-left: 2.5%;
+    margin: 5px;
+    border: 1px solid gray;
+    font-size: 1.25em;
+    top: 40%;
+    background-color: #646464;
+    font-weight: bold;
+    color: white;
+}
+
+#modalReviews {
+    position: absolute;
+    margin: 60px 5% 10px 5%;
+    display: block;
 }

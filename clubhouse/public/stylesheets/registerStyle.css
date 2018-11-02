@@ -1,0 +1,15 @@
+.container {
+    margin: 5%;
+
+    font-size: 20px;
+}
+
+input {
+    width: 40%;
+    display: block;
+    margin-bottom: 10px;
+}
+
+#description, #reviews {
+    height: 40px;
+}

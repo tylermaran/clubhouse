@@ -58,7 +58,24 @@ function renderDetail(results) {
         $('#greyScreen').css('display', 'none');
         $('#modal').css('display', 'none');
     });
+    $('#modalExit').click(function () {
+        $('#greyScreen').css('display', 'none');
+        $('#modal').css('display', 'none');
+    });
 
+    $('#modalTitle').text(results.clubName);
+    $('#modalDescription').text(results.description);
+    $('#modalHeader').text(results.clubName);
+    var image = $('<img src="' + results.images + '">');
+    image.attr('id', 'modal_image');
+    $('#modalImage').html(image);
+    $('#modalReviews').text(results.reviews);
+
+    
+    
+    
+    
+    
     $('#modal').show();
 }
 
