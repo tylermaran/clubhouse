@@ -71,10 +71,7 @@ function renderDetail(results) {
     $('#modalImage').html(image);
     $('#modalReviews').text(results.reviews);
 
-    
-    
-    
-    
+       
     
     $('#modal').show();
 }
