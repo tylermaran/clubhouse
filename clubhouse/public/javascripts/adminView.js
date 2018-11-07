@@ -9,6 +9,16 @@ function loadResults() {
     });
 }
 
+$('#newClubButton').click(function () {
+    console.log('clicked');
+    // $('.inputClub').css('display', 'block');
+    // $('#newClubButton').text('Cancel');
+    // $('#newClubButton').click(function () {
+    //     $('.inputClub').css('display', 'none');
+    // });
+});
+
+
 
 function renderResults(results) {
     $('.database').html('');
@@ -20,12 +30,12 @@ function renderResults(results) {
         list.text(results[i].clubName);
 
         var edit = $('<button>');
-        edit.addClass('button');
+        edit.addClass('clubButton');
         edit.attr('id', results[i].clubName)
         edit.text('Edit');
 
         var remove = $('<button>');
-        remove.addClass('button');
+        remove.addClass('clubButton');
         remove.attr('id', results[i].clubName)
         remove.text('Remove');
 
@@ -35,9 +45,8 @@ function renderResults(results) {
         });
 
         // add button to delete club
-        // todo: add a confirmation button
         $(remove).click(function () {
-            removeClub($(this)[0].id);
+            confirm($(this)[0].id);
         });
         list.append(remove);
         list.append(edit);
@@ -75,6 +84,18 @@ function removeClub(id) {
             console.log("Deleted " + id);
             loadResults();
         }
+    });
+}
+
+// Confirmation button when you click delete
+function confirm(club) {
+    $('#confirm').css('display', 'block');
+    $('#confirmButton').click(function () {
+        removeClub(club);
+    });
+    $('#cancelButton').click(function () {
+        console.log('clicked');
+        $('#confirm').css('display', 'none');
     });
 }
 

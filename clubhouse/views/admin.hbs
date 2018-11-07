@@ -2,7 +2,57 @@
 <h1>Admin Controls</h1>
 
 <div class="container">
-    <div class="database">
+    <a href="/">Home</a>
+
+    {{!-- Delete Confirmation Modal --}}
+    <div id="confirm">
+        <div>Are you sure you would like to delete?</div>
+        <button id='confirmButton'>Confirm</button>
+        <button id='cancelButton'>Cancel</button>
+    </div>
+
+    {{!-- Create New Club Option --}}
+    <p>Input a new club:</p>
+    <div id="newClub">
+        <button id='newClubButton'>New Club</button>
+
+        <div class="inputClub">
+            <section class="insert">
+                <h3>Insert Data</h3>
+                <form action="/create" method="post">
+                    <div class="input">
+                        <label for="clubName">Club Name</label>
+                        <input type="text" id="clubName" name="clubName">
+                    </div>
+                    <div class="input">
+                        <label for="website">website</label>
+                        <input type="text" id="website" name="website">
+                    </div>
+                    <div class="input">
+                        <label for="description">description</label>
+                        <input type="text" id="description" name="description">
+                    </div>
+                    <div class="input">
+                        <label for="contact">contact</label>
+                        <input type="text" id="contact" name="contact">
+                    </div>
+                    <div class="input">
+                        <label for="reviews">Reviews</label>
+                        <input type="text" id="reviews" name="reviews">
+                    </div>
+                    <div class="input">
+                        <label for="images">Image URL</label>
+                        <input type="text" id="images" name="images">
+                    </div>
+                    <button type="submit">Update</button>
+                </form>
+            </section>
+        </div>
 
     </div>
+
+    {{!-- Container for all database enteries --}}
+    <p>Existing Clubs:</p>
+    <div class="database"></div>
+
 </div>

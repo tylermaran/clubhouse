@@ -2,14 +2,61 @@
     margin: 5%;
 }
 
-.club {
-    width: 100%;
-    margin: 10px 0px;
+p {
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+#newClub {
+    position: relative;
+    width: 95%;
     border: 1px solid black;
+    min-width: 650px;
+}
+
+.inputClub {
+    display: none;
+}
+
+.database {
+    position: relative;
+    width: 95%;
+    border: 1px solid black;
+    min-width: 650px;
+
+}
+
+.club {
+    width: 95%;
+    margin: 2%;
+    border: 1px solid black;
+    min-width: 600px;
     padding: 5px;
 }
 
-button {
+.clubButton {
     float: right;
     margin-left: 10px;
+}
+
+
+#confirm {
+    display: none;
+    min-width: 175px;
+    height: auto;
+    width: 30%;
+    position: absolute;
+    z-index: 100;
+    left: 32.5%;
+    top: 15%;
+    background-color: white;
+    border: 1px solid black;
+    padding: 10px;
+}
+
+#cancelButton, #confirmButton {
+    position: relative;
+    display: block;
+    margin: 5%;
+    left: 0%;
 }
