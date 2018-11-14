@@ -7,7 +7,6 @@ mongoose.connect('mongodb://localhost:27017/club', {
 });
 var Schema = mongoose.Schema;
 
-
 var newClubSchema = new Schema({
   // here we can require a type and whether it is required
   clubName: {
@@ -32,6 +31,20 @@ var clubDetailSchema = new Schema({
   images: String
 });
 
+var survey = new Schema({
+  clubName: {
+    type: String,
+    required: true
+  },
+  knownFor: Array,
+  golf: Boolean,
+  tennis: Boolean,
+  swimming: Boolean,
+  allowPublicGolf: Boolean,
+  golfOnlyMemberships: Boolean,
+  discountMemberships: Boolean,
+  discountAge: Number
+})
 
 var clubHouse = mongoose.model('ClubHouse', newClubSchema);
 var clubDetail = mongoose.model('clubDetail', clubDetailSchema);
@@ -44,6 +57,7 @@ router.get('/', function (req, res, next) {
   });
 });
 
+// search route
 router.get('/search/:id?', function (req, res, next) {
   clubHouse.find().then(function (doc) {
     var location = req.params.id;
@@ -51,7 +65,6 @@ router.get('/search/:id?', function (req, res, next) {
     res.render('search', {
       layout: 'searchLayout.hbs'
     });
-
   });
 });
 
@@ -73,49 +86,80 @@ router.get('/api/:id', function (req, res, next) {
   });
 });
 
-// Api route to return full database entry for search
+// route for edit page
+router.get('/edit/:id?', function (req, res, next) {
+  let club = req.params.id;
+  console.log(club);
+
+  clubDetail.findOne({
+    clubName: club
+  }).then(function (doc) {
+    console.log('success getting club');
+    
+    res.render('adminEdit', {
+      title: club,
+      layout: 'adminEditLayout.hbs',
+      content: doc
+    });
+  });
+})
+
+// Find one and delete
 router.post('/api/delete/:id', function (req, res, next) {
   let club = req.params.id;
   console.log('deleting ' + club);
-  console.log(typeof(club));
+
   clubDetail.findOneAndDelete({
     clubName: club
-  }).then(function (doc) {
-    console.log(doc);
+  }).then(function () {
+    clubHouse.findOneAndDelete({
+      clubName: club
+    }).then(function (doc) {
+      console.log(doc);
+      res.json(doc);
+    });
   });
-  clubHouse.findOneAndDelete({
-    clubName: club
-  }).then(function (doc) {
-    console.log(doc);
-  });
-  
 });
 
-// Takes 
+// Register route
 router.get('/register', function (req, res, next) {
   res.render('register', {
+    title: 'Register',
     layout: 'registerLayout.hbs'
   });
 });
 
+// My Homepage route
 router.get('/myhomepage', function (req, res, next) {
   res.render('myhomepage');
 });
 
+// Survey Route
+router.get('/survey', function (req, res, next) {
+  res.render('survey', {
+    title: 'Survey',
+    layout: 'surveyLayout.hbs'
+  });
+});
 
-router.post('/create', function (req, res, next) {
+// Create new club
+router.post('/create/:id?', function (req, res, next) {
+  let id = req.params.id;
 
-  var brief = (req.body.description).substring(0, 150) + '...';
+  if (req.body.description.length > 150) {
+    var brief = (req.body.description).substring(0, 150) + '...';
+  } else {
+    var brief = (req.body.description);
+  }
 
-
-  var overview = {
+  let overview = {
     clubName: req.body.clubName,
     website: req.body.website,
     description: brief,
     contact: req.body.contact
   };
 
-  var detail = {
+  let detail = {
     clubName: req.body.clubName,
     website: req.body.website,
     description: req.body.description,
@@ -124,20 +168,21 @@ router.post('/create', function (req, res, next) {
     images: req.body.images
   }
 
-  var overviewDB = new clubHouse(overview);
+  const overviewDB = new clubHouse(overview);
   overviewDB.save();
 
-  var detailDB = new clubDetail(detail)
+  const detailDB = new clubDetail(detail)
   detailDB.save();
 
-  res.redirect('/myhomepage');
-
+  res.redirect('/' + id);
 });
 
+// Render admin page
 router.get('/admin', function (req, res, next) {
   res.render('admin', {
     layout: 'adminLayout.hbs'
   });
 });
 
+// Module.exports - this doesn't even need a label
 module.exports = router;

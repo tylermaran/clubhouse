@@ -1,0 +1,16 @@
+.container {
+    margin: 5%;
+}
+
+.label {
+    
+    margin: 5px;
+}
+
+.detail {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+}

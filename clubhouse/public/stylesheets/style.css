@@ -70,9 +70,9 @@ body {
   position: absolute;
   margin-top: 60px;
   height: 400px;
-  width: 35%;
+  width: 50%;
   background-color: white;
-  left: 32.5%;
+  left: 25%;
   border-radius: 5px;
   -webkit-box-shadow: 5px 5px 78px 8px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 5px 5px 78px 8px rgba(0, 0, 0, 0.75);
@@ -80,74 +80,30 @@ body {
 }
 
 #title {
-  position: absolute;
+  position: relative;
+  display: block;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   color: white;
   font-size: 25px;
   background-color: rgb(75, 75, 75);
-  width: 95%;
-  height: 50px;
-  padding: 10px 0px 0px 5%;
-}
-
-#searchBar {
-  position: absolute;
-  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-  top:20%;
-  width: 80%;
+  width: 100%;
+  height: 40px;
   text-align: center;
-  padding: 0 0 0 10%;
-  font-size: 16px;
+  padding-top: 10px;
 }
 
-#location {
-  position: absolute;
-  top: 35%;
-  left: 10%;
-  width: 80%;
-  font-size: 30px;
-  border: 1px solid black;
-  background-color: whitesmoke;
-}
-
-#button {
-  position: absolute;
-  top: 47%;
-  background-color: rgb(59, 121, 255);
-  border: none;
-  color: white;
-  width: 60%;
-  margin-left: 20%;
-  padding: 15px 0px;
+#search, #survey {
+  width: 45%;
+  float: left;
+  /* display: inline; */
+  height: 70%;
+  margin: 2.5%;
   text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 20px;
 }
 
 #register {
-  position: absolute;
-  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-  top:68%;
-  width: 80%;
+  width: 100%;
   text-align: center;
-  padding: 0 0 0 10%;
-  font-size: 16px;
-}
-
-#registerButton {
-  position: absolute;
-  top: 76%;
-  background-color: rgb(59, 121, 255);
-  border: none;
-  color: white;
-  width: 60%;
-  margin-left: 20%;
-  padding: 15px 0px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 20px;
 }
 
 .footer {

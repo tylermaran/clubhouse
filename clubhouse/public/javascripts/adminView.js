@@ -4,23 +4,28 @@ function loadResults() {
         success: function (results) {
             console.log("Success:")
             console.log(results);
+            $('.database').html('');
             renderResults(results);
         }
     });
 }
 
-$('#newClubButton').click(function () {
-    console.log('clicked');
-    // $('.inputClub').css('display', 'block');
-    // $('#newClubButton').text('Cancel');
-    // $('#newClubButton').click(function () {
-    //     $('.inputClub').css('display', 'none');
-    // });
-});
-
-
-
 function renderResults(results) {
+    var clicked = false;
+    $('#newClubButton').click(function () {
+        if (clicked) {
+            $('.inputClub').css('display', 'none');
+            $('#newClubButton').text('New Club');
+            clicked = false;
+        } else {
+            console.log('clicked');
+            $('.inputClub').css('display', 'block');
+            $('#newClubButton').text('Cancel');
+            clicked = true;
+        }
+    });
+
+
     $('.database').html('');
     for (let i = 0; i < results.length; i++) {
 
@@ -31,7 +36,7 @@ function renderResults(results) {
 
         var edit = $('<button>');
         edit.addClass('clubButton');
-        edit.attr('id', results[i].clubName)
+        edit.attr('id', results[i].clubName);
         edit.text('Edit');
 
         var remove = $('<button>');
@@ -41,7 +46,10 @@ function renderResults(results) {
 
         // add button to edit form
         $(edit).click(function () {
-            editClub($(this)[0].id);
+            window.location = "/edit/" + $(this)[0].id;
+            // editClub($(this)[0].id);
+            // $.get('/admin/' + $(this)[0].id);
+            // window.location = ("/admin/" + $(this)[0].id);
         });
 
         // add button to delete club
@@ -55,35 +63,47 @@ function renderResults(results) {
     }
 }
 
-
 function editClub(id) {
     console.log(id);
-    $.ajax({
-        url: "/api/" + id,
-        success: function (results) {
-            console.log("Success:")
-            console.log(results);
-            renderResults(results);
-        }
-    });
+
+    $.get('/register');
+
+    // $.ajax({
+    //     url: "/api/" + id,
+    //     success: function (results) {
+    //         console.log("Success:")
+    //         console.log(results);
+    //         editForm(results, cat);
+    //     }
+    // });
 }
 
-
-function editForm(results) {
+function editForm(results, cat) {
     // Build out form with all club results in it for editing
+    // for each element in the database, create a form
+
+    let editDetails = $('<div>');
+
+    for (var element in results) {
+        let formItem = $('<div>');
+        formItem.text(results[element]);
+        formItem.appendTo(editDetails);
+    };
+
+editDetails.appendTo(cat);
+
+console.log(cat);
+
 }
-
-
 
 function removeClub(id) {
     // find one club and delete it
     console.log(id);
     $.post({
-        url: ("/api/delete/" + id),
-        success: function () {
-            console.log("Deleted " + id);
-            loadResults();
-        }
+        url: ("/api/delete/" + id)
+    }).done(function () {
+        console.log('gpt here');
+        location.reload();
     });
 }
 
@@ -98,5 +118,6 @@ function confirm(club) {
         $('#confirm').css('display', 'none');
     });
 }
+
 
 loadResults();

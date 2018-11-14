@@ -18,15 +18,20 @@
 
     <div id="popup">
         <div id="title">Find a new community today</div>
-        <div id="searchBar">Looking to join a club? Enter a city or zip code below to begin searching:</div>
-        <form action="/search" method="get">
-            <input type="text" id="location" name="location">
-            <button type="submit" id="button">Search for a club</button>
-        </form>
-        <form action="/register" method="get">
-        <div id="register">Or register a new community today:</div>
-        <button type="submit"  id="registerButton">Register</button>
-        </form>
+
+        <div id="search">
+            <div id="searchText">Looking to join a club? Enter a city or zip code below to begin searching:</div>
+            <a href="/search" id='searchButton'><button>Search</button></a>
+        </div>
+        <div id="survey">
+            <div id="surveyText">Take our survey to match you with the right Club</div>
+            <a href="/survey" id = 'surveyButton'><button>Survey</button></a>
+        </div>
+
+        <div id="register">
+            <a href="/register">Or register a new community today</a>
+        </div>
+
     </div>
 
     <div class="footer">
