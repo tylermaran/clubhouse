@@ -13,6 +13,10 @@ function loadResults() {
 
 function renderResults(results) {
 
+    const form = $('<form method="post" class="editForm"></form>');
+    form.attr('action', "/edit/" + results.clubName);
+    form.appendTo('.database');
+
     for (const key in results) {
         if (results.hasOwnProperty(key)) {
 
@@ -28,16 +32,20 @@ function renderResults(results) {
 
                 const detailDiv = $('<textarea>');
                 detailDiv.addClass('detail');
-                detailDiv.attr('name', 'text');
+                detailDiv.attr('name', key);
                 detailDiv.text(detail);
                 // detailDiv.value(detail);
 
                 detailDiv.appendTo(titleDiv);
-                titleDiv.appendTo('.database');
+                titleDiv.appendTo('.editForm');
             }
         }
     }
 
+    const submit = $('<button>');
+    submit.attr('type', 'submit');
+    submit.text('Submit');
+    submit.appendTo('.editForm');
     
 }
 

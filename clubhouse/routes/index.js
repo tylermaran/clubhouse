@@ -95,7 +95,7 @@ router.get('/edit/:id?', function (req, res, next) {
     clubName: club
   }).then(function (doc) {
     console.log('success getting club');
-    
+
     res.render('adminEdit', {
       title: club,
       layout: 'adminEditLayout.hbs',
@@ -146,7 +146,10 @@ router.get('/survey', function (req, res, next) {
 router.post('/create/:id?', function (req, res, next) {
   let id = req.params.id;
 
+  console.log('Creating new club: ' + id);
+
   if (req.body.description.length > 150) {
+    console.log(req.body.description.length);
     var brief = (req.body.description).substring(0, 150) + '...';
   } else {
     var brief = (req.body.description);
@@ -175,6 +178,61 @@ router.post('/create/:id?', function (req, res, next) {
   detailDB.save();
 
   res.redirect('/' + id);
+});
+
+
+// Edit existing club
+router.post('/edit/:id?', function (req, res, next) {
+  let id = req.params.id;
+
+  console.log('Editing club: ' + id);
+
+  console.log(req.body);
+
+  if (req.body.description.length > 150) {
+    console.log(req.body.description.length);
+    var brief = (req.body.description).substring(0, 150) + '...';
+  } else {
+    var brief = (req.body.description);
+  }
+
+  let overview = {
+    clubName: req.body.clubName,
+    website: req.body.website,
+    description: brief,
+    contact: req.body.contact
+  };
+
+  let detail = {
+    clubName: req.body.clubName,
+    website: req.body.website,
+    description: req.body.description,
+    contact: req.body.contact,
+    reviews: req.body.reviews,
+    images: req.body.images
+  }
+
+  console.log("****************************************");
+  console.log(overview);
+  console.log("****************************************");
+  console.log(detail);
+  console.log("****************************************");
+
+  console.log(overview.clubName);
+  clubHouse.update({clubName: id}, overview, {upsert: true}, function(err){});
+  clubDetail.update({clubName: id}, detail, {upsert: true}, function(err){});
+
+  // clubHouse.findOneAndUpdate({clubName: overview.clubName}, {$set: overview},
+  // {upsert: true},
+  // {returnNewDocument: true})
+  // .then(function (doc) {
+  //   console.log('success');
+  //   console.log(doc);
+  // });
+
+
+
+  res.redirect('/admin');
 });
 
 // Render admin page
